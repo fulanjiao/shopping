@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="http://127.0.0.1/PHP/work/shopping/css/bootstrap.css">
+    <script src="http://127.0.0.1/PHP/work/shopping/js/jquery-1.11.1.js"></script>
+    <script src="http://127.0.0.1/PHP/work/shopping/js/bootstrap.js"></script>
+</head>
+
+<body>
+    <div class="container">
+    	<table class="table table-hover " >
+			<thead>
+			<tr>
+				<th>id</th>
+				<th>名称</th>
+				<th>详情</th>
+				<th>单价</th>
+				<th>数量</th>
+			</tr>
+			<tbody>
+				<{section name=key loop=$goods}>
+				<tr gid= <{$goods[key].gid}> >
+					<td> <{$smarty.section.key.index}> </td>
+					<td> <{$goods[key].gname}> </td>
+					<td> <{$goods[key].gdetail}> </td>
+					<td> <{$goods[key].gprice}> </td>
+					<td> <{$goods[key].gnum}> </td>
+				</tr>
+				<{/section}>
+			</tbody>
+			
+			</thead>
+		</table>
+    </div>
+    <script type="text/javascript">
+    	var path="http://127.0.0.1/PHP/work/shopping/index.php"
+    	$("tbody tr").click(function(){
+    		$.ajax({
+    			url:path+"/home/addList",
+    			data:{gid:$(this).attr("gid")},
+    			type:"get",
+    			success:function(re){
+    				console.log(re)
+    			}
+    		})
+    	})
+    </script>
+</body>
+
+</html>
